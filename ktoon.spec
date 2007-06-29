@@ -16,6 +16,7 @@ License:	GPL
 URL:		http://ktoon.toonka.com/
 BuildRequires:	qt4-devel >= 4.1.4
 BuildRequires:  MesaGLU-devel
+BuildRequires:	gstreamer0.10-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -23,7 +24,7 @@ KToon is a 2D Animation Toolkit designed by animators (Toonka Films ) for
 animators, focused to the Cartoon\'s industry.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{version}
 
 %build
 %{qt4dir}/bin/qmake ktoon.pro
