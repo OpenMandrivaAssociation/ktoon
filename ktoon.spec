@@ -43,7 +43,7 @@ Exec=%{_bindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
-Categories=Qt;KDE;X-MandrivaLinux-Multimedia-Graphics;Graphics
+Categories=Qt;KDE;X-MandrivaLinux-Multimedia-Graphics;Graphics;
 EOF
 
 
