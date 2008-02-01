@@ -12,11 +12,14 @@ Source0:	%{name}-%{version}.tar.gz
 Source11:	%{name}-16x16.png
 Source12:	%{name}-32x32.png
 Source13:	%{name}-48x48.png
-License:	GPL
+Patch1:		31_dirs.patch
+Patch2:		60_daction_q_object.patch
+Patch3:		80_fix_build_on_unix.patch
+License:	GPLv2+
 URL:		http://ktoon.toonka.com/
 BuildRequires:	qt4-devel >= 4.1.4
 BuildRequires:  MesaGLU-devel
-BuildRequires:	gstreamer0.10-devel
+BuildRequires:	libgstreamer0.10-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -25,8 +28,12 @@ animators, focused to the Cartoon\'s industry.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
+./configure
 %{qt4dir}/bin/qmake ktoon.pro
 %make
 
