@@ -19,7 +19,7 @@ License:	GPLv2+
 URL:		http://ktoon.toonka.com/
 BuildRequires:	qt4-devel >= 4.1.4
 BuildRequires:  MesaGLU-devel
-BuildRequires:	libgstreamer0.10-devel
+BuildRequires:	gstreamer0.10-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
