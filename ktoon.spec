@@ -1,6 +1,6 @@
 %define	name	ktoon
 %define	version	0.8.1
-%define	release	%mkrel 1
+%define	release	%mkrel 3
 %define	Summary	2D Animation Toolkit
 
 Name:		%{name}
