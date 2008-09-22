@@ -15,10 +15,12 @@ Source13:	%{name}-48x48.png
 Patch1:		31_dirs.patch
 Patch2:		60_daction_q_object.patch
 Patch3:		80_fix_build_on_unix.patch
+Patch4:		ktoon-0.8.1-fix-desktop.patch
 License:	GPLv2+
 URL:		http://ktoon.toonka.com/
 BuildRequires:	qt4-devel >= 4.1.4
 BuildRequires:  MesaGLU-devel
+BuildRequires:	desktop-file-utils
 BuildRequires:	gstreamer0.10-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -31,32 +33,38 @@ animators, focused to the Cartoon\'s industry.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p0
 
 %build
 ./configure
-%{qt4dir}/bin/qmake ktoon.pro
-%make
+%qmake_qt4
+make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-install -m755 bin/%{name} -D $RPM_BUILD_ROOT%{_bindir}/%{name}
+rm -rf %buildroot
+make install INSTALL_ROOT=%buildroot%_prefix
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Name=K-Toon
-Comment=%{Summary}
-Exec=%{_bindir}/%{name}
-Icon=%{name}
-Terminal=false
-Type=Application
-Categories=Qt;KDE;X-MandrivaLinux-Multimedia-Graphics;Graphics;
-EOF
-
+desktop-file-install --vendor='' \
+	--dir %buildroot%_datadir/applications/ \
+	%name.desktop
 
 install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
 install -m644 %{SOURCE12} -D $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
 install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
+
+mkdir -p %buildroot%_datadir/%name
+mv %buildroot%_prefix/plugins %buildroot%_datadir/%name
+mv %buildroot%_prefix/data %buildroot%_datadir/%name
+mv %buildroot%_prefix/themes %buildroot%_datadir/%name
+
+%if "%_lib" == "lib64"
+mv %buildroot%_prefix/lib/*%buildroot%_libdir/
+%endif
+
+# we do not ship devel files for now
+rm -f %buildroot%_libdir/*.so
+rm -fr %buildroot%_includedir
 
 %if %mdkversion < 200900
 %post
@@ -73,9 +81,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc README.txt
+%doc Changelog TODO
 %{_bindir}/%{name}
-%{_datadir}/applications/mandriva-%{name}.desktop
+%{_libdir}/*.so*
+%{_datadir}/%name
+%{_datadir}/applications/%{name}.desktop
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
