@@ -59,7 +59,8 @@ mv %buildroot%_prefix/data %buildroot%_datadir/%name
 mv %buildroot%_prefix/themes %buildroot%_datadir/%name
 
 %if "%_lib" == "lib64"
-mv %buildroot%_prefix/lib/*%buildroot%_libdir/
+mkdir -p %buildroot%_libdir
+mv %buildroot%_prefix/lib/* %buildroot%_libdir/
 %endif
 
 # we do not ship devel files for now
