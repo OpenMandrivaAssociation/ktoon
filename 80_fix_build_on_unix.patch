@@ -1,0 +1,84 @@
+diff -urNad ktoon-0.8.1~/src/components/export/export.pro ktoon-0.8.1/src/components/export/export.pro
+--- ktoon-0.8.1~/src/components/export/export.pro	2007-06-15 04:33:05.000000000 +0200
++++ ktoon-0.8.1/src/components/export/export.pro	2008-01-05 16:24:43.329936475 +0100
+@@ -14,7 +14,7 @@
+ CONFIG += release \
+ warn_on
+ TEMPLATE = subdirs
+-macx{
++!win32{
+   LIBS += -ldcore -ldgui -lktoon -lstore
+   QMAKE_LIBDIR = ../../../../src/dlib/dcore ../../../../src/dlib/dgui ../../../../src/ktoonlib ../../../../src/store
+ }
+diff -urNad ktoon-0.8.1~/src/components/export/genericexportplugin/genericexportplugin.pro ktoon-0.8.1/src/components/export/genericexportplugin/genericexportplugin.pro
+--- ktoon-0.8.1~/src/components/export/genericexportplugin/genericexportplugin.pro	2007-06-15 04:33:05.000000000 +0200
++++ ktoon-0.8.1/src/components/export/genericexportplugin/genericexportplugin.pro	2008-01-05 16:24:43.329936475 +0100
+@@ -17,7 +17,7 @@
+ TEMPLATE = lib 
+ HEADERS += genericexportplugin.h 
+ SOURCES += genericexportplugin.cpp 
+-macx{
++!win32{
+   LIBS += -ldcore -ldgui -lktoon -lstore
+   QMAKE_LIBDIR = ../../../../src/dlib/dcore ../../../../src/dlib/dgui ../../../../src/ktoonlib ../../../../src/store
+ }
+diff -urNad ktoon-0.8.1~/src/components/export/smilexportplugin/smilexportplugin.pro ktoon-0.8.1/src/components/export/smilexportplugin/smilexportplugin.pro
+--- ktoon-0.8.1~/src/components/export/smilexportplugin/smilexportplugin.pro	2007-06-15 04:33:05.000000000 +0200
++++ ktoon-0.8.1/src/components/export/smilexportplugin/smilexportplugin.pro	2008-01-05 16:24:43.329936475 +0100
+@@ -28,7 +28,7 @@
+   ../../../../src/store/release
+ }
+ 
+-macx {
++!win32{
+   LIBS += -ldcore -ldgui -lktoon -lstore
+   QMAKE_LIBDIR += ../../../../src/store \
+                ../../../../src/ktoonlib \
+diff -urNad ktoon-0.8.1~/src/dlib/dgui/dgui.pro ktoon-0.8.1/src/dlib/dgui/dgui.pro
+--- ktoon-0.8.1~/src/dlib/dgui/dgui.pro	2007-06-15 04:33:09.000000000 +0200
++++ ktoon-0.8.1/src/dlib/dgui/dgui.pro	2008-01-05 16:24:43.329936475 +0100
+@@ -112,7 +112,7 @@
+ warn_on \
+ dll
+ TEMPLATE = lib
+-macx{
++!win32{
+   QMAKE_LIBDIR = ../../../src/dlib/dcore
+   LIBS += -ldcore
+ }
+diff -urNad ktoon-0.8.1~/src/ktoonlib/ktoonlib.pro ktoon-0.8.1/src/ktoonlib/ktoonlib.pro
+--- ktoon-0.8.1~/src/ktoonlib/ktoonlib.pro	2007-06-15 04:33:04.000000000 +0200
++++ ktoon-0.8.1/src/ktoonlib/ktoonlib.pro	2008-01-05 16:24:43.329936475 +0100
+@@ -36,7 +36,7 @@
+ warn_on \
+ dll
+ TEMPLATE = lib
+-macx{
++!win32{
+   LIBS += -ldcore -ldgui
+   QMAKE_LIBDIR = ../../src/dlib/dcore ../../src/dlib/dgui
+ }
+diff -urNad ktoon-0.8.1~/src/modules/arthury/interfaces/interfaces.pro ktoon-0.8.1/src/modules/arthury/interfaces/interfaces.pro
+--- ktoon-0.8.1~/src/modules/arthury/interfaces/interfaces.pro	2007-06-15 04:33:09.000000000 +0200
++++ ktoon-0.8.1/src/modules/arthury/interfaces/interfaces.pro	2008-01-05 16:24:43.329936475 +0100
+@@ -17,7 +17,7 @@
+ TEMPLATE = lib
+ 
+ # a little hack
+-macx {
++!win32{
+ TEMPLATE = subdirs
+ }
+ win32 {
+diff -urNad ktoon-0.8.1~/src/store/store.pro ktoon-0.8.1/src/store/store.pro
+--- ktoon-0.8.1~/src/store/store.pro	2007-06-15 04:33:10.000000000 +0200
++++ ktoon-0.8.1/src/store/store.pro	2008-01-05 16:24:43.329936475 +0100
+@@ -44,7 +44,7 @@
+ dll
+ TEMPLATE = lib
+ 
+-macx {
++!win32{
+ LIBS += -ldcore -ldgui -lktoon
+ QMAKE_LIBDIR = ../../src/dlib/dcore ../../src/dlib/dgui ../../src/ktoonlib
+ }

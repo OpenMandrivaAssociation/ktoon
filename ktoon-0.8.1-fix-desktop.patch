@@ -1,0 +1,18 @@
+--- ktoon.desktop~	2005-09-29 20:22:24.000000000 +0200
++++ ktoon.desktop	2008-11-04 02:35:04.000000000 +0100
+@@ -1,13 +1,12 @@
+ [Desktop Entry]
+-Encoding=UTF-8
+ Name=KToon: A 2D Animation toolkit
+ Name[es]=KToon: Herramienta para animacion 2D
+ Exec=ktoon
+-Icon=ktoon.png
++Icon=ktoon
+ Type=Application
+ #MimeType=
+ #DocPath=
+-Categories=Application;Graphics;2DGraphics;RasterGraphics;
++Categories=Graphics;2DGraphics;RasterGraphics;Qt;
+ Comment=A 2D animation toolkit
+ Comment[es]=Herramienta para animacion 2D
+ Terminal=false

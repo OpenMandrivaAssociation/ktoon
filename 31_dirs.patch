@@ -1,0 +1,287 @@
+--- ktoon-0.8.1/src/components/colorpalette/ktviewcolorcells.cpp	2007-06-15 04:33:06.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/components/colorpalette/ktviewcolorcells.cpp	2007-12-08 15:26:21.040951666 +0100
+@@ -115,7 +115,7 @@
+ 		m_containerPalette->setCurrentIndex(lastIndex);
+ 	}
+ 	
+-	readPalettes(HOME+"/data/palettes"); // Pre-installed
++	readPalettes("/usr/share/ktoon/data/palettes"); // Pre-installed
+ 	readPalettes(CONFIG_DIR+"/palettes"); // Locals
+ }
+ 
+diff -ur ktoon-0.8.1/src/components/export/ui/ktexportwidget.cpp ktoon-0.8.1_dirsfixed/src/components/export/ui/ktexportwidget.cpp
+--- ktoon-0.8.1/src/components/export/ui/ktexportwidget.cpp	2007-06-15 04:33:05.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/components/export/ui/ktexportwidget.cpp	2007-12-08 15:29:05.486916493 +0100
+@@ -135,7 +135,7 @@
+ 
+ void KTExportWidget::loadPlugins()
+ {
+-	QDir pluginDirectory = QDir(HOME+"/plugins/");
++	QDir pluginDirectory = QDir("/usr/share/ktoon/plugins/");
+ 
+ 	foreach (QString fileName, pluginDirectory.entryList(QDir::Files))
+ 	{
+diff -ur ktoon-0.8.1/src/components/scenes/ktsceneswidget.cpp ktoon-0.8.1_dirsfixed/src/components/scenes/ktsceneswidget.cpp
+--- ktoon-0.8.1/src/components/scenes/ktsceneswidget.cpp	2007-06-15 04:33:05.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/components/scenes/ktsceneswidget.cpp	2007-12-08 13:55:07.562220122 +0100
+@@ -58,12 +58,12 @@
+ 	QHBoxLayout *layout = new QHBoxLayout(m_buttonsPanel);
+ 	layout->setMargin(0);
+ 
+-	DImageButton *insertButton = new DImageButton(QPixmap(HOME+"/themes/default/icons/plussign.png" ) , 22, m_buttonsPanel);
++	DImageButton *insertButton = new DImageButton(QPixmap("/usr/share/ktoon/themes/default/icons/plussign.png" ) , 22, m_buttonsPanel);
+ 	layout->addWidget(insertButton);
+ 	insertButton->setToolTip(tr("Insert scene"));
+ 	connect(insertButton, SIGNAL(clicked()), this, SLOT(emitRequestInsertScene()));
+ 	
+-	DImageButton *removeButton = new DImageButton(QPixmap(HOME+"/themes/default/icons/minussign.png" ) , 22, m_buttonsPanel);
++	DImageButton *removeButton = new DImageButton(QPixmap("/usr/share/ktoon/themes/default/icons/minussign.png" ) , 22, m_buttonsPanel);
+ 	layout->addWidget(removeButton);
+ 	removeButton->setToolTip(tr("Remove scene"));
+ 	connect(removeButton, SIGNAL(clicked()), this, SLOT(emitRequestRemoveScene()));
+diff -ur ktoon-0.8.1/src/components/timeline/ktlayermanager.cpp ktoon-0.8.1_dirsfixed/src/components/timeline/ktlayermanager.cpp
+--- ktoon-0.8.1/src/components/timeline/ktlayermanager.cpp	2007-06-15 04:33:06.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/components/timeline/ktlayermanager.cpp	2007-12-08 15:27:10.659113814 +0100
+@@ -91,22 +91,22 @@
+ 
+ 	m_utilsInBottom->layout()->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
+ 
+-	m_insertButton = new DImageButton( QPixmap(HOME+"/themes/default/icons/add_layer.png") , 20,  m_utilsInBottom );
++	m_insertButton = new DImageButton( QPixmap("/usr/share/ktoon/themes/default/icons/add_layer.png") , 20,  m_utilsInBottom );
+ 	m_buttonGroup->addButton(m_insertButton, InsertLayer);
+ 
+ 	m_insertButton->setToolTip(tr( "Insert Layer" ) );
+ 
+-	m_removeButton = new DImageButton( QPixmap(HOME+"/themes/default/icons/remove_layer.png"),  20, m_utilsInBottom );
++	m_removeButton = new DImageButton( QPixmap("/usr/share/ktoon/themes/default/icons/remove_layer.png"),  20, m_utilsInBottom );
+ 	m_buttonGroup->addButton(m_removeButton, RemoveLayer);
+ 	
+ 	m_removeButton->setToolTip(tr( "Remove Layer" ) );
+ 
+-	m_moveUpButton = new DImageButton( QPixmap(HOME+"/themes/default/icons/arrowup.png"),  20, m_utilsInBottom );
++	m_moveUpButton = new DImageButton( QPixmap("/usr/share/ktoon/themes/default/icons/arrowup.png"),  20, m_utilsInBottom );
+ 	m_buttonGroup->addButton(m_moveUpButton,MoveLayerUp);
+ 
+ 	m_moveUpButton->setToolTip(tr( "Move Layer Up" ) );
+ 
+-	m_moveDownButton = new DImageButton( QPixmap(HOME+"/themes/default/icons/arrowdown.png"), 20,  m_utilsInBottom );
++	m_moveDownButton = new DImageButton( QPixmap("/usr/share/ktoon/themes/default/icons/arrowdown.png"), 20,  m_utilsInBottom );
+ 	m_buttonGroup->addButton(m_moveDownButton,MoveLayerDown);
+ 
+ 	m_moveDownButton->setToolTip(tr( "Move Layer Down" ) );
+diff -ur ktoon-0.8.1/src/components/timeline/kttimelinelayer.cpp ktoon-0.8.1_dirsfixed/src/components/timeline/kttimelinelayer.cpp
+--- ktoon-0.8.1/src/components/timeline/kttimelinelayer.cpp	2007-06-15 04:33:06.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/components/timeline/kttimelinelayer.cpp	2007-12-08 15:28:39.535858413 +0100
+@@ -56,7 +56,7 @@
+ 	m_layout->addWidget(staticLayerImage);
+ 	staticLayerImage->show();
+ 	
+-	staticLayerImage -> setPixmap( QPixmap( HOME+"/themes/default/icons/layer_pic.png" ) );
++	staticLayerImage -> setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/layer_pic.png" ) );
+ 	staticLayerImage->setMinimumSize( 20, 20 );
+ // 	layout()->setAlignment(staticLayerImage, Qt::AlignLeft);
+ 
+@@ -90,13 +90,13 @@
+ 	
+ 	m_visibilityImage = new QLabel( m_utils );
+ // 	m_layout->addWidget(m_visibilityImage);
+-	m_visibilityImage -> setPixmap( QPixmap( HOME+"/themes/default/icons/enable.png" ) );
++	m_visibilityImage -> setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/enable.png" ) );
+ 	m_visibilityImage -> resize( 20, 20 );
+ 
+ 	
+ 	m_lockImage = new QLabel( m_utils );
+ // 	m_layout->addWidget(m_lockImage);
+-	m_lockImage -> setPixmap( QPixmap( HOME+"/themes/default/icons/disable.png" ) );
++	m_lockImage -> setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/disable.png" ) );
+ 	m_lockImage -> resize( 20, 20 );
+ 
+ 	m_onlyOutlines = new QCheckBox( m_utils );
+@@ -131,7 +131,7 @@
+ 	
+ 	if ( m_isEdited )
+ 	{
+-		m_editionImage -> setPixmap( QPixmap( HOME+"/themes/default/icons/written_pic.png" ) );
++		m_editionImage -> setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/written_pic.png" ) );
+ 	}
+ 	else
+ 	{
+@@ -161,11 +161,11 @@
+ {
+ 	if ( !yes )
+ 	{
+-		m_lockImage->setPixmap( QPixmap( HOME+"/themes/default/icons/enable.png" ) );
++		m_lockImage->setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/enable.png" ) );
+ 	}
+ 	else
+ 	{
+-		m_lockImage->setPixmap( QPixmap( HOME+"/themes/default/icons/disable.png" ) );
++		m_lockImage->setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/disable.png" ) );
+ 	}
+ 	m_isLocked = yes;
+ }
+@@ -174,11 +174,11 @@
+ {
+ 	if ( !m_isLocked )
+ 	{
+-		m_lockImage->setPixmap( QPixmap( HOME+"/themes/default/icons/enable.png" ) );
++		m_lockImage->setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/enable.png" ) );
+ 	}
+ 	else
+ 	{
+-		m_lockImage->setPixmap( QPixmap( HOME+"/themes/default/icons/disable.png" ) );
++		m_lockImage->setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/disable.png" ) );
+ 	}
+ 	m_isLocked = !m_isLocked;
+ }
+@@ -187,11 +187,11 @@
+ {
+ 	if ( !yes )
+ 	{
+-		m_visibilityImage -> setPixmap( QPixmap( HOME+"/themes/default/icons/enable.png" ) );
++		m_visibilityImage -> setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/enable.png" ) );
+ 	}
+ 	else
+ 	{
+-		m_visibilityImage->setPixmap( QPixmap( HOME+"/themes/default/icons/disable.png" ) );
++		m_visibilityImage->setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/disable.png" ) );
+ 	}
+ 	m_isVisible = yes;
+ }
+@@ -200,11 +200,11 @@
+ {
+ 	if ( !m_isVisible )
+ 	{
+-		m_visibilityImage -> setPixmap( QPixmap( HOME+"/themes/default/icons/enable.png" ) );
++		m_visibilityImage -> setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/enable.png" ) );
+ 	}
+ 	else
+ 	{
+-		m_visibilityImage->setPixmap( QPixmap( HOME+"/themes/default/icons/disable.png" ) );
++		m_visibilityImage->setPixmap( QPixmap( "/usr/share/ktoon/themes/default/icons/disable.png" ) );
+ 	}
+ 	m_isVisible = !m_isVisible;
+ }
+diff -ur ktoon-0.8.1/src/core/crashhandler.cpp ktoon-0.8.1_dirsfixed/src/core/crashhandler.cpp
+--- ktoon-0.8.1/src/core/crashhandler.cpp	2007-06-15 04:33:07.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/core/crashhandler.cpp	2007-12-08 13:57:54.145703976 +0100
+@@ -296,7 +296,7 @@
+ 			QString gdb;
+ 			gdb  = "gdb --nw -n --batch -x ";
+ 			gdb += temp.fileName();
+-			gdb += HOME+"/bin/ktoon";
++			gdb += "/usr/bin/ktoon";
+ 			gdb += QString::number( ::getppid() );
+ 	
+ 			bt = runCommand( gdb );
+@@ -306,7 +306,7 @@
+ 		bt.remove( QRegExp("\\(no debugging symbols found\\)") );
+ 		bt = bt.simplified();
+ 
+-		execInfo = runCommand( "file "+HOME+"/bin/ktoon");
++		execInfo = runCommand( "file /usr/bin/ktoon");
+ 		
+ 		/////// Widget
+ 		CrashWidget widget(sig);
+diff -ur ktoon-0.8.1/src/core/ktmainwindow-gui.cpp ktoon-0.8.1_dirsfixed/src/core/ktmainwindow-gui.cpp
+--- ktoon-0.8.1/src/core/ktmainwindow-gui.cpp	2007-06-15 04:33:07.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/core/ktmainwindow-gui.cpp	2007-12-08 13:59:19.471389391 +0100
+@@ -84,7 +84,7 @@
+ 	connectToDisplays(m_exposureSheet);
+ 	
+ 	///////////////////////
+-	m_helper = new KTHelpWidget(HOME+"/data/help/");
++	m_helper = new KTHelpWidget("/usr/share/ktoon/data/help/");
+ // 	toolWindow(DDockWindow::Right)->addWidget(tr("Help"),m_helper);
+ 	addToolView(m_helper, Qt::RightDockWidgetArea);
+ 	connect(m_helper, SIGNAL(pageLoaded(const QString &, const QString &)), this, SLOT(showHelpPage(const QString &, const QString &)));
+@@ -110,7 +110,7 @@
+ 	//////////////////
+ #ifdef ENABLE_KINAS
+ 	KinasWidget *m_scriptEditor = new KinasWidget(this);
+-	m_scriptEditor->setWindowIcon(QPixmap(HOME+"/images/icons/color_palette.png") );
++	m_scriptEditor->setWindowIcon(QPixmap("/usr/share/ktoon/themes/default/images/icons/color_palette.png") );
+ // 	toolWindow(DDockWindow::Bottom)->addWidget(tr("Kinas"), m_scriptEditor);
+ 	addToolView(m_scriptEditor, Qt::BottomDockWidgetArea);
+ #endif
+diff -ur ktoon-0.8.1/src/core/ktpluginmanager.cpp ktoon-0.8.1_dirsfixed/src/core/ktpluginmanager.cpp
+--- ktoon-0.8.1/src/core/ktpluginmanager.cpp	2007-06-15 04:33:07.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/core/ktpluginmanager.cpp	2007-12-08 13:56:53.635347135 +0100
+@@ -55,7 +55,7 @@
+ 	m_filters.clear();
+ 	m_tools.clear();
+ 	
+-	QDir m_pluginDirectory = QDir(HOME+"/plugins/");
++	QDir m_pluginDirectory = QDir("/usr/share/ktoon/plugins/");
+ 
+ 	foreach (QString fileName, m_pluginDirectory.entryList(QDir::Files))
+ 	{
+diff -ur ktoon-0.8.1/src/core/ktviewdocument.cpp ktoon-0.8.1_dirsfixed/src/core/ktviewdocument.cpp
+--- ktoon-0.8.1/src/core/ktviewdocument.cpp	2007-06-15 04:33:07.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/core/ktviewdocument.cpp	2007-12-08 13:57:16.174734909 +0100
+@@ -373,7 +373,7 @@
+ 
+ 	m_toolsTransform = new QMenu( tr( "Transform " ), this);
+ 	connect( m_toolsTransform, SIGNAL(triggered ( QAction * )), this, SLOT(selectToolFromMenu( QAction*)));
+-	m_toolsTransform->setIcon(QPixmap(HOME+"/images/icons/align_l.png"));
++	m_toolsTransform->setIcon(QPixmap("/usr/share/ktoon/images/icons/align_l.png"));
+ 
+ 	m_toolsTransform->addAction(tr( "Flip &Horizontally" ), m_paintAreaContainer->drawArea(), SLOT(slotFlipHorizontally()));
+ 	m_toolsTransform->addAction(tr( "Flip &Vertically" ), m_paintAreaContainer->drawArea(), SLOT(slotFlipVertically()));
+diff -ur ktoon-0.8.1/src/core/main.cpp ktoon-0.8.1_dirsfixed/src/core/main.cpp
+--- ktoon-0.8.1/src/core/main.cpp	2007-06-15 04:33:07.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/core/main.cpp	2007-12-08 15:25:49.070143830 +0100
+@@ -118,12 +118,12 @@
+ 		
+ 		QTranslator *qttranslator = new QTranslator;
+ 		
+-		qttranslator->load( QString( "qt_" ) + locale, HOME+"/data/translations");
++		qttranslator->load( QString( "qt_" ) + locale, "/usr/share/ktoon/data/translations");
+ 	
+ 		application.installTranslator( qttranslator );
+ 		
+ 		QTranslator *translator = new QTranslator;
+-		translator->load( QString( "ktoon_" )+locale,  HOME+"/data/translations");
++		translator->load( QString( "ktoon_" )+locale,  "/usr/share/ktoon/data/translations");
+ 		
+ 		application.installTranslator( translator );
+ 	}
+@@ -148,7 +148,7 @@
+ 	
+ 	delete splash;
+ 	
+-	QApplication::addLibraryPath (HOME+"/plugins");
++	QApplication::addLibraryPath ("/usr/share/ktoon/plugins");
+ 	
+ 
+ #ifdef Q_OS_UNIX
+diff -ur ktoon-0.8.1/src/modules/arthury/plugins/tools/ashapebrushplugin/shapeconfigurator.cpp ktoon-0.8.1_dirsfixed/src/modules/arthury/plugins/tools/ashapebrushplugin/shapeconfigurator.cpp
+--- ktoon-0.8.1/src/modules/arthury/plugins/tools/ashapebrushplugin/shapeconfigurator.cpp	2007-06-15 04:33:09.000000000 +0200
++++ ktoon-0.8.1_dirsfixed/src/modules/arthury/plugins/tools/ashapebrushplugin/shapeconfigurator.cpp	2007-12-08 13:56:27.256063918 +0100
+@@ -139,12 +139,12 @@
+ 	QGroupBox *containerButtons = new QGroupBox();
+ 	QHBoxLayout *layout = new QHBoxLayout(containerButtons);
+ 	layout->setMargin(0);
+-	m_addBrush = new DImageButton( QPixmap( HOME+"/themes/default/icons/plussign.png" ), 22, containerButtons);
++	m_addBrush = new DImageButton( QPixmap( "/usr/share/ktoon/themes/default/icons/plussign.png" ), 22, containerButtons);
+ 	connect( m_addBrush, SIGNAL( clicked() ), SLOT( addBrush() ) );
+ 	m_addBrush->setToolTip(tr( "Add Brush" ) );
+ 	layout->addWidget(m_addBrush, Qt::AlignCenter);
+ 	
+-	m_removeBrush = new DImageButton( QPixmap( HOME+"/themes/default/icons/minussign.png" ), 22, containerButtons);
++	m_removeBrush = new DImageButton( QPixmap( "/usr/share/ktoon/themes/default/icons/minussign.png" ), 22, containerButtons);
+ 	connect( m_removeBrush, SIGNAL( clicked() ), SLOT( removeBrush() ) );
+ 	m_removeBrush->setToolTip( tr( "Remove Brush" ) );
+ 	layout->addWidget(m_removeBrush, Qt::AlignCenter);
+diff -ur ktoon-0.8.1/src/core/configwizard.cpp ktoon-0.8.1_dirsfixed/src/core/configwizard.cpp
+--- ktoon-0.8.1/src/core/configwizard.cpp       2007-06-15 04:33:07.000000000 +0200
++++ ktoon-0.8.1-mod/src/core/configwizard.cpp   2007-12-09 12:40:28.194738536 +0100
+@@ -103,7 +103,7 @@
+ 	
+ 	DVHBox *hbox1 = new DVHBox(container, Qt::Horizontal);
+ 	
+-	m_kthome = new QLineEdit(QString::fromLocal8Bit(::getenv("KTOON_HOME")), hbox1);
++	m_kthome = new QLineEdit(QString::fromLocal8Bit("/usr/share/ktoon"), hbox1);
+ 	
+ 	connect(m_kthome, SIGNAL(textChanged(const QString &)), this, SLOT(verify(const QString &)));
+ 

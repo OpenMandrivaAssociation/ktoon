@@ -1,0 +1,10 @@
+--- ktoon-0.8.1/src/dlib/dgui/daction.h~	2008-02-01 20:45:42.000000000 +0800
++++ ktoon-0.8.1/src/dlib/dgui/daction.h	2008-02-01 20:46:56.000000000 +0800
+@@ -31,6 +31,7 @@
+ */
+ class Q_GUI_EXPORT DAction : public QAction
+ {
++	Q_OBJECT
+ 	public:
+ 		/**
+ 		 * Construye una accion con un padre y un identificador 
