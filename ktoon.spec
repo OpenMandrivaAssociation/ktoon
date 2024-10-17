@@ -17,7 +17,7 @@ Patch2:		60_daction_q_object.patch
 Patch3:		80_fix_build_on_unix.patch
 Patch4:		ktoon-0.8.1-fix-desktop.patch
 License:	GPLv2+
-URL:		http://ktoon.toonka.com/
+URL:		https://ktoon.toonka.com/
 BuildRequires:	qt4-devel >= 4.1.4
 BuildRequires:  MesaGLU-devel
 BuildRequires:	desktop-file-utils
